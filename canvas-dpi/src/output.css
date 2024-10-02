@@ -600,12 +600,20 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-\[380px\] {
   height: 380px;
 }
 
 .h-96 {
   height: 24rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .w-\[800px\] {

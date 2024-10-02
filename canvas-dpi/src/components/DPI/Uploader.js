@@ -11,18 +11,16 @@ function Uploader() {
   useEffect(() => {
     if (image) {
       const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        const img = new Image();
-        img.src = image;
-        img.onload = () => {
-          const scaleFactor = img.width / canvas.width;
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0, img.width, img.height);
-          setDpi(Math.round(96 * scaleFactor));  // 96 is default screen DPI
-        };
-      }
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = image;
+      img.onload = () => {
+        const scaleFactor = img.width / canvas.width;
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        setDpi(Math.round(96 * scaleFactor)); // Assuming screen DPI is 96
+      };
     }
   }, [image]);
 
@@ -58,9 +56,13 @@ function Uploader() {
       <div className="container mx-auto p-4">
         <div {...getRootProps()} className="flex flex-col items-center justify-center border-2 border-dashed border-[#b0e6cb] h-96 w-full md:w-2/3 xl:w-1/2 mx-auto cursor-pointer rounded-md shadow-lg">
           <input {...getInputProps()} />
-          {!image && <p>Drop file or click to select file</p>}
+          {image ? (
+            <img src={image} alt="Uploaded" className="max-w-full h-auto mt-4" />
+          ) : (
+            <p>Drop file or click to select file</p>
+          )}
         </div>
-        {image && <canvas ref={canvasRef} className="mt-4 max-w-full" />}
+        {image && <canvas ref={canvasRef} className="hidden" />}
         <p className="text-center mt-2">DPI: {dpi}</p>
       </div>
     </div>
