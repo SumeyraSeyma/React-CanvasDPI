@@ -11,7 +11,6 @@ function Uploader() {
   const [isDownDisabled, setIsDownDisabled] = useState(false);
   const canvasRef = useRef(null);
 
-
   useEffect(() => {
     if (image) {
       const canvas = canvasRef.current;
@@ -72,14 +71,45 @@ function Uploader() {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div>
-      <h1>Drop your image here</h1>
-      <div {...getRootProps()} style={{ border: '1px solid black', width: 200, height: 200 }}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+      <div>
+         
+    <header id="header" className="bg-white shadow-md py-4">
+      <div className="container mx-auto">
+        <div className="flex flex-wrap items-center justify-between">
+          <div className="w-full lg:w-auto text-center lg:text-left">
+            <div className="logo">
+              <a href="/" className="text-2xl font-bold text-gray-800">
+                DPI Converter
+              </a>
+            </div>
+          </div>
+          <ul className="flex space-x-4 mt-4 lg:mt-0">
+            <li>
+              <a href="/" className="text-gray-700 hover:text-gray-900">
+                Home
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </header>
+      
+
+    <div>
+      <div {...getRootProps()} className="flex flex-col items-center justify-center border-2 border-dashed border-[#b0e6cb] h-[380px] w-[800px] cursor-pointer rounded-md mt-0 shadow-lg">
+            <input {...getInputProps()} />        
+        {image ?(
+        <canvas ref={canvasRef} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        ):(
+        <>
+            <p className='droppp'>Drop file or click select file</p>
+        </>
+        )}
+        
+        </div>
       <canvas ref={canvasRef}></canvas>
       <p>{dpi}</p>
+    </div>
     </div>
   );
 }
