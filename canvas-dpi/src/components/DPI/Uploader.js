@@ -42,31 +42,22 @@ function Uploader() {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div>
-      <header className="bg-white shadow-md py-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">DPI Converter</h1>
-          <nav>
-            <ul className="flex space-x-4">
-              <li><a href="/" className="text-gray-700 hover:text-gray-900">Home</a></li>
-            </ul>
-          </nav>
+    <div className="p-4">
+        <div {...getRootProps()} className="border-dashed border-2 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer bg-white shadow-lg">
+            <input {...getInputProps()} />
+            <p className="text-gray-500">Click the button to upload or drag files to the page</p>
+            {image && <img src={image} alt="Uploaded file" className="mt-4 max-w-full h-auto" />}
         </div>
-      </header>
-      <div className="container mx-auto p-4">
-        <div {...getRootProps()} className="flex flex-col items-center justify-center border-2 border-dashed border-[#b0e6cb] h-96 w-full md:w-2/3 xl:w-1/2 mx-auto cursor-pointer rounded-md shadow-lg">
-          <input {...getInputProps()} />
-          {image ? (
-            <img src={image} alt="Uploaded" className="max-w-full h-auto mt-4" />
-          ) : (
-            <p>Drop file or click to select file</p>
-          )}
+        <div className="flex justify-center space-x-4 mt-4">
+            {[72, 150, 200, 300, 400, 600].map(dpi => (
+                <button key={dpi} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {dpi}
+                </button>
+            ))}
+            <input placeholder='Custom' className="bg-gray-300 hover:bg-gray-400 text-black py-2 px-2 rounded"/>
         </div>
-        {image && <canvas ref={canvasRef} className="hidden" />}
-        <p className="text-center mt-2">DPI: {dpi}</p>
-      </div>
     </div>
-  );
+);
 }
 
 export default Uploader;
