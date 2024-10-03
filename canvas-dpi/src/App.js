@@ -19,7 +19,7 @@ function App() {
           </nav>
         </div>
       </header>
-      <div className="container mx-auto mt-0">
+      <div className="mx-auto mt-0">
         <Uploader />
       </div>
     </div>

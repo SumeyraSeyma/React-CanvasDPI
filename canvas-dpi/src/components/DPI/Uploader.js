@@ -25,10 +25,14 @@ function Uploader() {
   };
 
   const handleDownloadClick = () => {
+    if (!canvasRef.current) {
+      console.error('Canvas is not available.');
+      return;
+    }
+  
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     const img = new Image();
-    img.src = imageSrc;
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
@@ -36,8 +40,9 @@ function Uploader() {
       const updatedDataUrl = changeDpiDataUrl(canvas.toDataURL('image/png'), selectedDpi);
       downloadImage(updatedDataUrl);
     };
+    img.src = imageSrc;
   };
-
+  
   const downloadImage = (dataUrl) => {
     const link = document.createElement('a');
     link.href = dataUrl;
@@ -49,20 +54,22 @@ function Uploader() {
 
   return (
     <div className="p-4 bg-white shadow rounded-lg">
-      <div {...getRootProps()} className="dropzone border-dashed border-2 h-96 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer">
+      <canvas ref={canvasRef} className="hidden" />
+      <div {...getRootProps()} className="dropzone border-dashed border-2 h-60 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer">
         <input {...getInputProps()} />
         {isDragActive ?
           <p>Drop the files here ...</p> :
-          imageSrc ? <img src={imageSrc} alt="Preview" className="max-w-full max-h-60 mt-4" /> :
+          imageSrc ? <img src={imageSrc} alt="Preview" className="max-w-full max-h-52 mt-4" /> :
           <p>Drag 'n' drop some files here, or click to select files</p>
         }
       </div>
+      <div></div>
       <div className="flex mt-4 justify-center">
         {dpis.map((dpi) => (
           <button
             key={dpi}
             onClick={() => setSelectedDpi(dpi)}
-            className={`py-2 px-4 border ${selectedDpi === dpi ? 'border-blue-500 text-blue-500' : 'border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-500'} rounded transition-colors`}
+            className={`py-2 px-8 border ${selectedDpi === dpi ? 'border-blue-500 text-blue-500' : 'border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-500'} rounded transition-colors`}
           >
             {dpi}
           </button>
