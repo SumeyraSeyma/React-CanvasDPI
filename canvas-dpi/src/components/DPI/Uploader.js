@@ -1,75 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useRef } from 'react';
+import { changeDpiDataUrl } from 'changedpi';
 
-function Uploader() {
-  const [image, setImage] = useState(null);
-  const [dpi, setDpi] = useState(0);
+function ImageUploader() {
+  const [imageSrc, setImageSrc] = useState('');
+  const [dpi, setDpi] = useState(72); // Varsayılan olarak 72 DPI
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    if (image) {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
-        const scaleFactor = img.width / canvas.width;
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        setDpi(Math.round(96 * scaleFactor)); // Assuming screen DPI is 96
-      };
-    }
-  }, [image]);
-
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImage(e.target.result);
-        toast.success('Image uploaded successfully!');
-      };
-      reader.readAsDataURL(file);
-    } else {
-      toast.error('Invalid file type. Please select an image file.');
-      setImage(null);
-    }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setImageSrc(event.target.result);
+    };
+    reader.readAsDataURL(file);
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const handleDownloadClick = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    const img = new Image();
+    img.src = imageSrc;
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      const updatedDataUrl = changeDpiDataUrl(canvas.toDataURL('image/png'), dpi);
+      downloadImage(updatedDataUrl);
+    };
+  };
+
+  const downloadImage = (dataUrl) => {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = `image_${dpi}_dpi.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <div className="p-4">
-        <div {...getRootProps()} className="border-dashed border-2 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer bg-white shadow-lg">
-            <input {...getInputProps()} />
-            {image ?(
-        <canvas ref={canvasRef} style={{ maxWidth: '50%', maxHeight: '50%' }} />
-        ):(
-        <>
-            <p className='droppp'>Drop file or click select file</p>
-        </>
-        )}  
-        </div>
-        <div className='justify-between flex'>
-          <div className="flex justify-center space-x-4 mt-4">
-            {[72, 150, 200, 300, 400, 600].map(dpi => (
-                <button key={dpi} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {dpi}
-                </button>
-            ))}
-            <input placeholder='Custom' className="bg-gray-300 hover:bg-gray-400 text-black py-2 px-2 rounded"/>
-          </div>
-          <div className="flex justify-center mt-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Convert
-            </button>
-          </div>
-        </div>
+    <div>
+      <input type="file" onChange={handleImageChange} />
+      <input type="number" value={dpi} onChange={(e) => setDpi(e.target.value)} />
+      <button onClick={handleDownloadClick}>Download Image with New DPI</button>
+      <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
     </div>
-);
+  );
 }
 
-export default Uploader;
+export default ImageUploader;

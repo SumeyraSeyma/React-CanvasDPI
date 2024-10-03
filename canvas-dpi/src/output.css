@@ -612,6 +612,14 @@ video {
   height: auto;
 }
 
+.h-1\/2 {
+  height: 50%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -814,6 +822,11 @@ video {
   padding-right: 0.5rem;
 }
 
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -826,6 +839,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {
