@@ -4,8 +4,10 @@ import { changeDpiDataUrl } from 'changedpi';
 
 function Uploader() {
   const [imageSrc, setImageSrc] = useState('');
-  const [dpi, setDpi] = useState(72); // Default DPI
+  const [selectedDpi, setSelectedDpi] = useState(72); // Default DPI
   const canvasRef = useRef(null);
+
+  const dpis = [72, 150, 200, 300, 400, 600];
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -18,6 +20,10 @@ function Uploader() {
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({ onDrop });
 
+  const deleteImage = () => {
+    setImageSrc('');
+  };
+
   const handleDownloadClick = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -27,7 +33,7 @@ function Uploader() {
       canvas.width = img.width;
       canvas.height = img.height;
       context.drawImage(img, 0, 0);
-      const updatedDataUrl = changeDpiDataUrl(canvas.toDataURL('image/png'), dpi);
+      const updatedDataUrl = changeDpiDataUrl(canvas.toDataURL('image/png'), selectedDpi);
       downloadImage(updatedDataUrl);
     };
   };
@@ -35,7 +41,7 @@ function Uploader() {
   const downloadImage = (dataUrl) => {
     const link = document.createElement('a');
     link.href = dataUrl;
-    link.download = `image_${dpi}_dpi.png`;
+    link.download = `image_${selectedDpi}_dpi.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -43,7 +49,7 @@ function Uploader() {
 
   return (
     <div className="p-4 bg-white shadow rounded-lg">
-      <div {...getRootProps()} className="dropzone border-dashed border-2 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer">
+      <div {...getRootProps()} className="dropzone border-dashed border-2 h-96 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer">
         <input {...getInputProps()} />
         {isDragActive ?
           <p>Drop the files here ...</p> :
@@ -51,19 +57,34 @@ function Uploader() {
           <p>Drag 'n' drop some files here, or click to select files</p>
         }
       </div>
-      <div className="flex space-x-2 mb-4">
-        {[72, 150, 200, 300, 400, 600].map((value) => (
-          <button key={value} onClick={() => setDpi(value)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {value}
+      <div className="flex mt-4 justify-center">
+        {dpis.map((dpi) => (
+          <button
+            key={dpi}
+            onClick={() => setSelectedDpi(dpi)}
+            className={`py-2 px-4 border ${selectedDpi === dpi ? 'border-blue-500 text-blue-500' : 'border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-500'} rounded transition-colors`}
+          >
+            {dpi}
           </button>
         ))}
-        <input type="text" placeholder="Custom" className="form-input rounded border px-4 py-2"
-               value={dpi} onChange={(e) => setDpi(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Custom"
+          className="rounded border px-4 py-2 hover:border-blue-500 hover:text-blue-500"
+          value={selectedDpi}
+          onChange={(e) => setSelectedDpi(Number(e.target.value))}
+        />
       </div>
-      <button onClick={handleDownloadClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Download Image with New DPI
-      </button>
-      <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+      <div className="mt-4">
+        <button onClick={deleteImage} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Delete Image
+        </button>
+      </div>
+      <div className="flex space-x-4 mt-4">
+        <button onClick={handleDownloadClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Download Image with New DPI
+        </button>
+      </div>
     </div>
   );
 }
