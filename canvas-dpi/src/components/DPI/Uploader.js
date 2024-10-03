@@ -45,8 +45,13 @@ function Uploader() {
     <div className="p-4">
         <div {...getRootProps()} className="border-dashed border-2 border-gray-400 rounded-lg p-10 flex flex-col items-center justify-center cursor-pointer bg-white shadow-lg">
             <input {...getInputProps()} />
-            <p className="text-gray-500">Click the button to upload or drag files to the page</p>
-            {image && <img src={image} alt="Uploaded file" className="mt-4 max-w-full h-auto" />}
+            {image ?(
+        <canvas ref={canvasRef} style={{ maxWidth: '50%', maxHeight: '50%' }} />
+        ):(
+        <>
+            <p className='droppp'>Drop file or click select file</p>
+        </>
+        )}  
         </div>
         <div className="flex justify-center space-x-4 mt-4">
             {[72, 150, 200, 300, 400, 600].map(dpi => (
