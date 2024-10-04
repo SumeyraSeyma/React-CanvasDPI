@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className='bg-blue-500 p-4' id='Aa'>
-        <header className="text-white 2xl:flex justify-between text-center py-4 w-full" >
+        <header className="text-white 2xl:flex justify-between text-center py-4 w-full" id='header' >
           <h1 className="text-2xl">Online DPI Converter</h1>
           <nav>
             <ul className="flex justify-center space-x-4 mt-2">

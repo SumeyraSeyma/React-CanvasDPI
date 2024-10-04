@@ -70,7 +70,7 @@ function Uploader() {
       }
     </div>
     <p className="text-center text-xl text-gray-600 mt-4">Set New DPI</p>
-    <div className='2xl:flex justify-between'>
+    <div className='2xl:flex justify-between' id='con'>
     <div className="2xl:flex mt-4 mb-6 justify-center" id='dpi'>
       {dpis.map((dpi) => (
         <button
