@@ -55,22 +55,23 @@ function Uploader() {
   };
 
   return (
-    <div className="p-4 bg-white shadow justify-center rounded-lg w-9/12 mt-6">
+    <div className="p-8 bg-white shadow justify-center rounded-lg w-9/12 mt-6">
        <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
       <div>
-    <div {...getRootProps()} className="dropzone border-dashed border-2 h-60 border-gray-400 rounded-lg p-16 flex flex-col items-center justify-center cursor-pointer">
+    <div {...getRootProps()} className="dropzone hover:bg-blue-50 border-dashed border-2 h-60 border-gray-400 rounded-lg p-16 flex flex-col items-center justify-center cursor-pointer">
       <input {...getInputProps()} />
       {isDragActive ?
         <p>Drop the files here ...</p> :
         imageSrc ? <img src={imageSrc} alt="Preview" className="max-w-full max-h-48 mt-4" /> :
         <div>
           <img src="https://www.dpi-converter.com/assets/images/file-upload.png" alt="Placeholder" className="max-w-full max-h-48 mt-4" />
-          <p className='mt-4 mb-4'>Drag 'n' drop some files here, or click to select files</p>
+          <p className='mt-4 mb-4 text-center'>Drag 'n' drop some files here, or click to select files</p>
         </div>
       }
     </div>
+    <p className="text-center text-xl text-gray-600 mt-4">Set New DPI</p>
     <div className='flex justify-between'>
-    <div className="flex mt-4 justify-center ">
+    <div className="flex mt-4 mb-6 justify-center ">
       {dpis.map((dpi) => (
         <button
           key={dpi}
@@ -89,16 +90,16 @@ function Uploader() {
       />
     </div>
     <div className='flex'>
-    <div className="mt-4">
-      <button onClick={deleteImage} className="bg-black hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-      <FontAwesomeIcon className='' icon={faTrashCan} />
-      </button>
-    </div>
-    <div className="flex space-x-4 mt-4">
-      <button onClick={handleDownloadClick} className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      <FontAwesomeIcon icon={faCloudArrowDown} />
-      </button>
-    </div>
+      <div className="mt-4">
+        <button onClick={deleteImage} className=" border-gray-300 text-gray-400 hover:text-blue-500 font-bold py-2 px-4 rounded">
+          <FontAwesomeIcon icon={faTrashCan} size="xl"/>
+        </button>
+      </div>
+      <div className=" mt-4">
+        <button onClick={handleDownloadClick} className="border-gray-300 text-gray-400 hover:text-blue-500 font-bold py-2 px-4 rounded">
+          <FontAwesomeIcon icon={faCloudArrowDown} size="xl"/>
+        </button>
+      </div>
     </div>
     </div>
     </div>

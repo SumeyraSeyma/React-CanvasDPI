@@ -20,10 +20,11 @@ function App() {
       </header>
       </div>
     <div className="flex-1 bg-blue-500 flex items-end justify-center">
-      
     </div>
     <div className="flex-1 bg-white flex items-start justify-center">
-      <div className="w-full max-w-6xl px-4 ml-40 -mt-44"> 
+      <div className="w-full max-w-7xl px-4 ml-64 -mt-44">
+          <p className="text-3xl ml-80 text-white">Online DPI Converter</p>
+            <p className='text-center text-white mr-72'>Batch modify DPI of images, supports various formats such as JPG, PNG, GIF, etc.</p> 
         <ToastContainer />
         <Uploader />
       </div>
