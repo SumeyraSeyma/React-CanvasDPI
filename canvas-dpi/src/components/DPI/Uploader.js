@@ -55,7 +55,7 @@ function Uploader() {
   };
 
   return (
-    <div className="p-8 bg-white shadow justify-center rounded-lg w-9/12 mt-6">
+    <div className="p-8 bg-white shadow justify-center rounded-lg w-9/12 mt-6" id='Ua'>
        <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
       <div>
     <div {...getRootProps()} className="dropzone hover:bg-blue-50 border-dashed border-2 h-60 border-gray-400 rounded-lg p-16 flex flex-col items-center justify-center cursor-pointer">
@@ -70,8 +70,8 @@ function Uploader() {
       }
     </div>
     <p className="text-center text-xl text-gray-600 mt-4">Set New DPI</p>
-    <div className='flex justify-between'>
-    <div className="flex mt-4 mb-6 justify-center ">
+    <div className='2xl:flex justify-between'>
+    <div className="2xl:flex mt-4 mb-6 justify-center ">
       {dpis.map((dpi) => (
         <button
           key={dpi}
@@ -84,12 +84,13 @@ function Uploader() {
       <input
         type="text"
         placeholder="Custom"
-        className="w-24 border border-gray-300 px-4 py-2 hover:border-blue-500 hover:text-blue-500"
+        id='custom'
+        className="2xl:w-24 border border-gray-300 px-4 py-2 hover:border-blue-500 hover:text-blue-500"
         value={selectedDpi}
         onChange={(e) => setSelectedDpi(Number(e.target.value))}
       />
     </div>
-    <div className='flex'>
+    <div className='flex' id='buttons'>
       <div className="mt-4">
         <button onClick={deleteImage} className=" border-gray-300 text-gray-400 hover:text-blue-500 font-bold py-2 px-4 rounded">
           <FontAwesomeIcon icon={faTrashCan} size="xl"/>

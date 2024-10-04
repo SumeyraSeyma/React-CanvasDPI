@@ -649,6 +649,10 @@ video {
   margin-left: 20rem;
 }
 
+.mt-16 {
+  margin-top: 4rem;
+}
+
 .flex {
   display: flex;
 }
@@ -939,4 +943,44 @@ code {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
+}
+
+@media (min-width: 640px) {
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:-mt-44 {
+    margin-top: -11rem;
+  }
+
+  .\32xl\:mt-16 {
+    margin-top: 4rem;
+  }
+
+  .\32xl\:ml-80 {
+    margin-left: 20rem;
+  }
+
+  .\32xl\:ml-64 {
+    margin-left: 16rem;
+  }
+
+  .\32xl\:flex {
+    display: flex;
+  }
+
+  .\32xl\:w-full {
+    width: 100%;
+  }
+
+  .\32xl\:w-24 {
+    width: 6rem;
+  }
 }
