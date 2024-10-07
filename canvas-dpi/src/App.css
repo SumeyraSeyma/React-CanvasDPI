@@ -4,7 +4,7 @@
 
 @media (min-width: 400px) and (max-width: 412px){
   #Aa{
-    width: 412px;
+    width: 414px;
     height: 300px;
   }
   #p1{
@@ -146,12 +146,125 @@
   }
 }
 
-@media (max-width: 376px) {
+@media (min-width:1024px) and (max-width:1025px){
+  #Aa{
+    width: 1020px;
+    height: 400px;
+  }
+  header{
+    display: flex;
+  }
+  #p1{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-top: -13rem;
+    margin-left: 23rem;
+  }
+  #p2{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-left: 0.5rem;
+  }
+  #Ua{
+    width: 980px;
+    height: 550px;
+    margin-right: 100px;
+    margin-bottom: 20rem;
+  }
+  #con{
+    display: flex;
+  }
+  #dpi{
+    display: flex;
+  }
+}
+
+@media(max-width:344px){
   html,body{
     overflow-x: hidden;
   }
   #Aa{
-    width: 400px;
+    width: 280px;
+    height: 300px;
+  }
+  #p1{
+    color: white;
+    width: 50%;
+    height: 100%;
+    margin-top: -11rem;
+    margin-left: 3rem;
+  }
+  #p2{
+    color: white;
+    width: 50%;
+    height: 100%;
+    margin-left: 3rem;
+  }
+  #Ua{
+    width: 250px;
+    height: 550px;
+    margin-right: 100px;
+    margin-bottom: 20rem;
+  }
+  #custom{
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    height: 30px;
+    width: 100px;
+  }
+  #buttons{
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+}
+
+@media (min-width:345px) and (max-width:360px){
+  html,body{
+    overflow-x: hidden;
+  }
+  #Aa{
+    width: 360px;
+    height: 300px;
+  }
+  #p1{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-top: -11rem;
+    margin-left: 2rem;
+  }
+  #p2{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-left: 0.5rem;
+  }
+  #Ua{
+    width: 330px;
+    height: 550px;
+    margin-right: 100px;
+    margin-left: 0.5rem;
+    margin-bottom: 20rem;
+  }
+  #custom{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    height: 30px;
+  }
+  #buttons{
+    margin-top: 1rem;
+    margin-left: 4rem;
+  }
+}
+
+@media (min-width:361px) and (max-width: 376px) {
+  html,body{
+    overflow-x: hidden;
+  }
+  #Aa{
+    width: 376px;
     height: 400px;
   }
   #p1{
@@ -188,7 +301,7 @@
 
 @media (min-width: 377px) and (max-width: 411px) {
   #Aa{
-    width: 768px;
+    width: 400px;
     height: 400px;
   }
   #p1{
@@ -223,7 +336,7 @@
 }
 @media (min-width:413px) and (max-width:539px){
   #Aa{
-    width: 768px;
+    width: 440px;
     height: 400px;
   }
   #p1{
@@ -231,7 +344,7 @@
     width: 100%;
     height: 100%;
     margin-top: -13rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
   }
   #p2{
     color: white;
@@ -243,7 +356,7 @@
     width: 330px;
     height: 550px;
     margin-right: 100px;
-    margin-left: 0.5rem;
+    margin-left: 2rem;
     margin-bottom: 20rem;
   }
   #custom{
@@ -266,25 +379,25 @@
   }
   #Aa{
     height: 400px;
+    width: 700px;
   }
   #p1{
     color: white;
     width: 100%;
     height: 100%;
     margin-top: -13rem;
-    margin-left: 2rem;
+    margin-left: 13rem;
   }
   #p2{
     color: white;
-    width: 100%;
+    width: 90%;
     height: 100%;
-    margin-left: 0.5rem;
   }
   #Ua{
     width: 500px;
     height: 550px;
     margin-right: 100px;
-    margin-left: 0.5rem;
+    margin-left: 5rem;
     margin-bottom: 20rem;
   }
   #custom{
@@ -438,6 +551,7 @@
   }
   #Aa{
     height: 400px;
+    width: 910px;
   }
   #p1{
     color: white;
