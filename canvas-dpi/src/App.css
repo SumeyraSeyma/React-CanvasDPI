@@ -2,6 +2,42 @@
   text-align: center;
 }
 
+@media (width:540px) and (height:720px){
+  #Aa{
+    width: 540px;
+    height: 400px;
+  }
+  #p1{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-top: -13rem;
+    margin-left: 2rem;
+  }
+  #p2{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-left: 0.5rem;
+  }
+  #Ua{
+    width: 330px;
+    height: 550px;
+    margin-right: 100px;
+    margin-left: 0.5rem;
+    margin-bottom: 20rem;
+  }
+  #custom{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    height: 30px;
+  }
+  #buttons{
+    margin-top: 1rem;
+    margin-left: 4rem;
+  }
+}
+
 @media (width:1280px) and (height:800px){
   #header{
     display: flex;
@@ -186,9 +222,12 @@
   }
 }
 
-@media (min-width: 820px) and (max-width: 1023px) {
+@media (min-width: 820px) and (max-width: 911px) {
   body{
     overflow-x: hidden;
+  }
+  #header{
+    display: flex;
   }
   #Aa{
     height: 400px;
@@ -208,6 +247,51 @@
   }
   #Ua{
     width: 700px;
+    height: 550px;
+    margin-right: 100px;
+    margin-left: 2.5rem;
+    margin-bottom: 20rem;
+  }
+  #dpi{
+    margin-top: 1.5rem;
+    margin-left: 6rem;
+  }
+  #custom{
+    margin-top: 1.5rem;
+    margin-left: 8rem;
+    height: 30px;
+  }
+  #buttons{
+    margin-top: 1rem;
+    margin-left: 17rem;
+  }
+}
+
+@media (min-width: 912px) and (max-width: 1023px) {
+  body{
+    overflow-x: hidden;
+  }
+  #header{
+    display: flex;
+  }
+  #Aa{
+    height: 400px;
+  }
+  #p1{
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin-top: -13rem;
+    margin-left: 14rem;
+    flex-direction: column;
+  }
+  #p2{
+    color: white;
+    width: 100%;
+    height: 100%;
+  }
+  #Ua{
+    width: 800px;
     height: 550px;
     margin-right: 100px;
     margin-left: 2.5rem;
